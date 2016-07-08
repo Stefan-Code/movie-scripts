@@ -3,12 +3,13 @@ import subprocess
 import sys
 import os
 
+print('starting... (This may take a while)')
 def touch(directory, file='.nomedia'):
     filepath = os.path.join(directory, file)
     #print('touching file', filepath)
     subprocess.call(['touch', filepath])
 
-result = subprocess.check_output("find . -type d -iname '*extra*' | sed '/extrafanart/d' | xargs -0 echo", shell=True)
+result = subprocess.check_output("find . -type d -iname '*extra*' | sed '/extrafanart/d'", shell=True)
 resultdirs = [dirname for dirname in result.decode('utf-8').split('\n') if dirname]
 
 print(len(resultdirs), 'items in queue')
