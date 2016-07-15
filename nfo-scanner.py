@@ -2,6 +2,7 @@
 import subprocess
 import sys
 import os
+import shutil
 
 print('starting... (This may take a while)')
 
@@ -20,3 +21,9 @@ print('Do you want to see a list of files? [y/n]')
 answer = input()
 if answer == 'y':
     print('\n'.join(badfiles))
+print('do you want to rename the files to *.nfo.bak ?')
+answer = input()
+if answer == 'y':
+    for badfile in badfiles:
+        print('moving', badfile, badfile + '.bak')
+        shutil.move(badfile, badfile + '.bak')
