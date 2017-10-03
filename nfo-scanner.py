@@ -6,7 +6,12 @@ import shutil
 
 print('starting... (This may take a while)')
 
-result = subprocess.check_output("find . -type f -iname '*.nfo'", shell=True)
+if len(sys.argv) > 1:
+    path = sys.argv[1]
+else:
+    path = "."
+
+result = subprocess.check_output("find {} -type f -iname '*.nfo'".format(path), shell=True)
 resultfiles = [filename for filename in result.decode('utf-8').split('\n') if filename]
 print('found {} nfo files'.format(len(resultfiles)))
 
